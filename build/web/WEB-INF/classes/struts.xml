@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global" />
+    
+    
+    
+    <package name="default" namespace="/" extends="struts-default">
+        
+       <action name="resultAction" class="dto.Image">
+
+            <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+       			<param name="allowedTypes">
+                            image/png,
+                            image/jpeg
+                        </param>
+       			<param name="maximumSize">1000000</param>
+            </interceptor-ref> 
+          <!--  <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>  
+            <result name="success">result.jsp</result>
+	    <result name="input">imageupload.jsp</result>
+			
+	</action>
+        
+        
+        <!--<action name="fileUploadAction" class="dto.Image" method="display">
+			<result name="none">imageupload.jsp</result>
+	</action>-->
+           
+              
+                    
+       
+    </package>
+</struts>    
